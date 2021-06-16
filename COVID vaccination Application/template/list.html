@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if users[0] %}  
+ <div class="container">
+    <div span="right">  
+    <form action="/search"   method="GET" >  
+        <div style="margin-top: 30px; margin-bottom: 30px;">
+        <big><b>Search Reference:</b></big> 
+            <div class="row">
+                <div class="col-md-3"> 
+                    <select class="form-control" name="refer" required>  
+                        <option value="VaccineCenterName">Already Booked</option>  
+                        <option value="VaccineName">Available</option>   
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" name="key" placeholder="Search" size="30" />
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary btn-sm" type="submit">Search</button>
+                </div>
+            </div>
+        </div>
+        
+          
+    </form>  
+    </div>  
+    <b><big style=" color:darkslategray;">Slot list :</big></b>
+    <div style="margin-top:30px">  
+    <table class="table table-hover">  
+        <tr id="row">  
+            <th class="Seat No">Seat No</th>  
+            <th class="classtype">classtype</th>  
+            <th class="Availability10Booked">Availability10Booked</th>  
+            <th class="func1">Remove</th>  
+            <th class="func2">Modify</th>  
+        </tr>  
+    {% for user in users %}
+        <tr class="datas">    
+           
+            <td class="Seat No"> {{ user["SeatNo"] }}</td> 
+            <td class="classtype">{{ user["classtype"] }}</td>  
+            <td class="Availability10Booked">{{ user["Availability10Booked"] }}</td>  
+            <td class="func1"><a href="./remove?_id={{ user['_id'] }}"><button type="submit" class="btn btn-danger btn-sm">Unavailable</button></a></td>  
+            <td class="func1"><a href="./update?_id={{ user['_id'] }}"><button type="submit" class="btn btn-info btn-sm">Edit</button></a></td>  
+        </tr> 
+         
+    {% endfor %}  
+    </table>  
+    {% else %}  
+        <h4 style="text-align: center;">Already 10 seats alloted !!</h4>  
+    {% endif %}  
+    {% endblock %}
+    </div>
+    </div>>

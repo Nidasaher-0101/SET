@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if users[0] %}  
+    <h3>Result : Booked seat List</h3>  
+    <br>
+    <table class="table table-hover">  
+        <tr id="row">  
+            <th class="SeatNo">Seat No</th>  
+            <th class="classtype">classtype</th>  
+            <th class="Availability10Booked">Availability10Booked</th>  
+        <th class="func1">Remove</th>  
+        <th class="func2">Modify</th>  
+        </tr>  
+    {% for user in users %}  
+        <tr class="datas">    
+            <a href="/{{ user["VaccineCenterName"] }}">
+            <td class="SeatNo">{{ user["SeatNo"] }}</td>  
+            </a>
+            <td class="classtype">{{ user["classtype"] }}</td>  
+            <td class="Availability10Booked">{{ user["Availability10Booked"] }}</td>  
+            <td class="func1"><a href="./remove?_id={{ user['_id'] }}"><button class="btn btn-danger" type="submit">Unavailable</button></a></td>  
+            <td class="func1"><a href="./update?_id={{ user['_id'] }}"><button class="btn btn-info" type="submit">Confirm</button></a></td>  
+        </tr>  
+        {% endfor %}  
+    {% else %}  
+        <h4>No Result Found !!</h4>  
+    {% endif %}  
+    </table>  
+{% endblock %}
